@@ -5,10 +5,12 @@ from OpenGL.GLUT import *
 import math
 import numpy
 from PIL import Image
+from PIL import ImageEnhance
 
 
 def loadImage(imageName) :
     img = Image.open(imageName)
+
     img_data = numpy.array(list(img.getdata()), numpy.uint8)
     return img.size[0], img.size[1], img_data
 
@@ -17,8 +19,8 @@ def GLinit() :
     ix, iy, img = loadImage('tiger2.bmp')
     im = glGenTextures(1, img)
     glBindTexture(GL_TEXTURE_2D, im)
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP)
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP)
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, ix, iy, 0, GL_RGB, GL_UNSIGNED_BYTE, img)
@@ -34,21 +36,23 @@ def disp() :
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     glOrtho(-1.1,1.1,-1.1,1.1,-10,10)
+    gluPerspective(60, 1, 0.1, 100)
+    gluLookAt(0,0,2, 0,0,0, 0,1,0)
 
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
 
     angle += 0.1
-    glRotatef(angle, 1,1,1)
+    glRotatef(angle, 1,1,0)
     glColor3f(1,1,1)
     glBegin(GL_QUADS)
     glTexCoord2fv([0, 0])
     glVertex3fv([-1, 1, 0])
-    glTexCoord2fv([0, 1])
+    glTexCoord2fv([0, 10])
     glVertex3fv([-1,-1, 0])
-    glTexCoord2fv([1, 1])
+    glTexCoord2fv([10, 10])
     glVertex3fv([ 1,-1, 0])
-    glTexCoord2fv([1, 0])
+    glTexCoord2fv([10, 0])
     glVertex3fv([ 1, 1, 0])
     glEnd()
 

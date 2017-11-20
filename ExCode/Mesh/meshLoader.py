@@ -21,16 +21,16 @@ def loadMesh(filename):
 verts, faces = loadMesh("complex.txt")
 
 def drawVerts(v, f) :
-
+    glBegin(GL_POINTS)
     for i in range(0, len(f)) :
-        glBegin(GL_LINE_LOOP)
         glVertex3fv(v[f[i][0]])
         glVertex3fv(v[f[i][1]])
         glVertex3fv(v[f[i][2]])
-        glEnd()
+    glEnd()
 
+angle = 0
 def disp() :
-    global verts, faces
+    global verts, faces, angle
     # reset buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
@@ -42,24 +42,30 @@ def disp() :
     glLoadIdentity()
     gluLookAt(60, 35, 50, 0, 35, 0, 0, 1, 0)
 
+    angle += 10
+    glRotatef(angle, 0,1,0)
+    print(angle)
     glColor3f(1,1,1)
     drawVerts(verts, faces)
 
-    glFlush()
+    #glFlush()
+    glutSwapBuffers()
 
 
 # windowing
-glutInit(sys.argv)
-glutInitDisplayMode(GLUT_SINGLE|GLUT_DEPTH|GLUT_RGB)
-glutInitWindowSize(512,512)
-glutInitWindowPosition(512,0)
-glutCreateWindow(b"Test Window")
-glClearColor(0, 0.0, 0.0, 0)
+if __name__=="__main__":
+    glutInit(sys.argv)
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_DEPTH|GLUT_RGB)
+    glutInitWindowSize(512,512)
+    glutInitWindowPosition(512,0)
+    glutCreateWindow(b"Test Window")
+    glClearColor(0, 0.0, 0.0, 0)
 
 
-# register callbacks
-glutDisplayFunc(disp)
+    # register callbacks
+    glutDisplayFunc(disp)
+    glutIdleFunc(disp)
 
 
-# enter main infinite-loop
-glutMainLoop()
+    # enter main infinite-loop
+    glutMainLoop()
