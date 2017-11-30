@@ -1,5 +1,6 @@
 from OpenGL.GLUT import *
 from OpenGL.GL import *
+from OpenGL.GLU import *
 
 import module_drawCircle as dc
 
