@@ -22,7 +22,7 @@ t = 0
 # initialization
 def GLinit() :
 
-    glClearColor(0,1,1,0)
+    glClearColor(0,0,0,0)
     glEnable(GL_COLOR_MATERIAL)
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_LIGHTING)
@@ -166,7 +166,7 @@ def display() :
     if buffers2 is None :
         buffers2 = create_vbo(vertices2, normals2, faces2)
 
-    glColor3f(1,1.0, 0.0)
+    glColor3f(1,1,1)
     drawMeshWithShader(buffers1, faces)
     glColor3f(1.0, 0.7, 0.7)
     glPushMatrix()
