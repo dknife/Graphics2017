@@ -1,0 +1,23 @@
+
+import math # module을 가져온다.
+
+# 피타고라스 정리를 이용한 빗변 계산
+
+# bitbyeon function #########
+
+def bitbyeon (mit, nop) :
+    return math.sqrt(mit*mit+nop*nop), math.atan(nop/mit)
+
+
+#############################
+
+mitbyeon = 1
+nopi = 1
+bit, angle = bitbyeon(mitbyeon, nopi)
+print("밑변, 높이 = ", mitbyeon, nopi, "=> 빗변", bit, ", 각도 =", angle)
+
+
+
+
+
+
