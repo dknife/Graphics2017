@@ -5,8 +5,8 @@ import math
 
 WIDTH = 1200
 HEIGHT = 640
-PADDLEW = 20
-PADDLEH = 80
+PADDLEW = 16
+PADDLEH = 64
 BALLSPEED = 300
 PADDLESPEED = 500
 
@@ -47,11 +47,10 @@ def createObjects() :
     # Creating 2 Paddles, a ball and background.
     Background = pygame.Surface((WIDTH, HEIGHT))
     Background.fill((0, 0, 255))
-    Paddle = pygame.Surface((PADDLEW, PADDLEH))
-    Paddle1 = Paddle.convert()
-    Paddle1.fill((255, 255, 0))
-    Paddle2 = Paddle.convert()
-    Paddle2.fill((255, 0, 0))
+
+    Paddle1 = pygame.image.load("paddle1.png")
+    Paddle2 = pygame.image.load("paddle2.png")
+
 
     # some definitions
     PaddleLoc = [[BORDERMARGIN, HEIGHT/2  - PADDLEH/2.],[WIDTH-BORDERMARGIN-PADDLEW, HEIGHT/2 - PADDLEH/2.]]
@@ -185,7 +184,6 @@ def main() :
         restrictPaddle(PaddleLoc[1])
 
         collisionHandle(PaddleLoc[0], PaddleLoc[1], BallLoc, BallVelocity, Scores)
-
 
         pygame.display.update()
 

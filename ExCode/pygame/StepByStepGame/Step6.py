@@ -9,22 +9,23 @@ PADDLEW = 20
 PADDLEH = 80
 BALLSPEED = 300
 PADDLESPEED = 500
-
 BORDERMARGIN = 50
 
+
 def waitForKeyPress():
-    for event in pygame.event.get(QUIT): # get all the QUIT events
+    for event in pygame.event.get(QUIT):  # get all the QUIT events
         pygame.quit()
         exit()
-    for event in pygame.event.get(KEYUP): # get all the KEYUP events
+    for event in pygame.event.get(KEYUP):  # get all the KEYUP events
         if event.key == K_ESCAPE:
             pygame.quit()
             exit()
-        else :
+        else:
             return event.key
     return None
 
-def init() :
+
+def init():
     global Screen, Font
 
     pygame.init()
@@ -34,15 +35,16 @@ def init() :
     Font = pygame.font.SysFont("freesansbold", 40)
     Logo = Font.render("MY PONG", True, (255, 255, 255))
     msg = Font.render("press any key to start", True, (255, 255, 255))
-    Screen.blit(Logo, (WIDTH/2-70., HEIGHT/2-30.))
-    Screen.blit(msg,  (WIDTH/2-130., HEIGHT/2+60.))
+    Screen.blit(Logo, (WIDTH / 2 - 70., HEIGHT / 2 - 30.))
+    Screen.blit(msg, (WIDTH / 2 - 130., HEIGHT / 2 + 60.))
 
     while waitForKeyPress() == None:
         pygame.display.update()
 
+
 def createObjects() :
     global Background, Paddle1, Paddle2, PaddleLoc,  \
-        BallLoc, BallVelocity, Scores, imgBall
+        BallLoc, PlayerDirection, BallVelocity, Scores, imgBall
 
     # Creating 2 Paddles, a ball and background.
     Background = pygame.Surface((WIDTH, HEIGHT))
@@ -62,26 +64,36 @@ def createObjects() :
     imgBall = pygame.image.load("PokeBall.png")
 
 
-def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2) :
+def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2):
     global Background, Paddle1, Paddle2, imgBall
     scoreText0 = Font.render(str(score[0]), True, (255, 255, 255))
     scoreText1 = Font.render(str(score[1]), True, (255, 255, 255))
 
     Screen.blit(Background, (0, 0))
-    frame = pygame.draw.rect(Screen, (0, 255, 0), Rect((BORDERMARGIN,BORDERMARGIN), (WIDTH-BORDERMARGIN*2, HEIGHT-BORDERMARGIN*2)), 2)
-    middle_line = pygame.draw.aaline(Screen, (255, 255, 255), (WIDTH/2, 5), (WIDTH/2, HEIGHT-5))
+    frame = pygame.draw.rect(Screen, (0, 255, 0),
+                             Rect((BORDERMARGIN, BORDERMARGIN), (WIDTH - BORDERMARGIN * 2, HEIGHT - BORDERMARGIN * 2)),
+                             2)
+    middle_line = pygame.draw.aaline(Screen, (255, 255, 255), (WIDTH / 2, 5), (WIDTH / 2, HEIGHT - 5))
     Screen.blit(Paddle1, (paddleLoc1[0], paddleLoc1[1]))
     Screen.blit(Paddle2, (paddleLoc2[0], paddleLoc2[1]))
-    Screen.blit(scoreText0, (WIDTH/4., HEIGHT/4.))
-    Screen.blit(scoreText1, (WIDTH*3/4, HEIGHT/4))
+    Screen.blit(scoreText0, (WIDTH / 4., HEIGHT / 4.))
+    Screen.blit(scoreText1, (WIDTH * 3 / 4, HEIGHT / 4))
 
-    Screen.blit(imgBall,(ballLoc[0], ballLoc[1]))
+    Screen.blit(imgBall, (ballLoc[0], ballLoc[1]))
+
+
+def restrictPaddle(loc) :
+    minY = BORDERMARGIN
+    maxY = HEIGHT - PADDLEH - BORDERMARGIN
+    if loc[1] >= maxY : loc[1] = maxY
+    if loc[1] <= minY : loc[1] = minY
 
 def setPlayer(y) :
     global PaddleLoc
     PaddleLoc[0][1] = y
 
 def processInput() :
+    global PlayerDirection
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -96,7 +108,6 @@ def processInput() :
                 pygame.quit()
                 exit()
 
-
 def getTimeSincePreviousFrame(clock) :
     # movement of circle
     # Clock.tick(framerate=0) -> milliseconds
@@ -107,26 +118,6 @@ def getTimeSincePreviousFrame(clock) :
 def MoveBall(ballPosition, velocity, dt) :
     ballPosition[0] += velocity[0]*dt
     ballPosition[1] += velocity[1]*dt
-
-
-def MovePlayerPaddle(loc, updown, speed, dt) :
-    loc[1] += updown*speed*dt
-
-def MoveAI(loc, ballPos, speed, dt ):
-    PaddleMove = PADDLESPEED * dt
-
-    # AI of the computer.
-    if ballPos[0] >= WIDTH/2.:
-        if loc[1] < ballPos[1]:
-            loc[1] += PaddleMove
-        if loc[1] > ballPos[1] - PADDLEH:
-            loc[1] -= PaddleMove
-
-def restrictPaddle(loc) :
-    minY = BORDERMARGIN
-    maxY = HEIGHT - PADDLEH - BORDERMARGIN
-    if loc[1] >= maxY : loc[1] = maxY
-    if loc[1] <= minY : loc[1] = minY
 
 def collisionHandle(player, computer, ballLoc, ballVel, scores) :
 
@@ -161,8 +152,17 @@ def collisionHandle(player, computer, ballLoc, ballVel, scores) :
         BallVelocity[1] = -BallVelocity[1]
         BallLoc[1] = HEIGHT-BORDERMARGIN-ballWidth
 
+def MoveAI(loc, ballPos, speed, dt ):
+    PaddleMove = PADDLESPEED * dt
 
-def main() :
+    # AI of the computer.
+    if ballPos[0] >= WIDTH/2.:
+        if loc[1] < ballPos[1]:
+            loc[1] += PaddleMove
+        if loc[1] > ballPos[1] - PADDLEH:
+            loc[1] -= PaddleMove
+
+def main():
     global Background, Paddle1, Paddle2, PaddleLoc, BallLoc, BallVelocity, Scores
 
     init()
@@ -177,15 +177,12 @@ def main() :
         displayGameStatus(Scores, BallLoc, PaddleLoc[0], PaddleLoc[1])
 
         dt = getTimeSincePreviousFrame(clock)
-
         MoveBall(BallLoc, BallVelocity, dt)
+
         MoveAI(PaddleLoc[1], BallLoc, PADDLESPEED, dt)
 
-        restrictPaddle(PaddleLoc[0])
-        restrictPaddle(PaddleLoc[1])
-
         collisionHandle(PaddleLoc[0], PaddleLoc[1], BallLoc, BallVelocity, Scores)
-
+        restrictPaddle(PaddleLoc[1])
 
         pygame.display.update()
 
