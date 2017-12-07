@@ -25,7 +25,7 @@ def waitForKeyPress():
     return None
 
 def init() :
-    global Screen, Font
+    global Screen, Font, BallSpin
 
     pygame.init()
     Screen = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
@@ -36,12 +36,13 @@ def init() :
     msg = Font.render("press any key to start", True, (255, 255, 255))
     Screen.blit(Logo, (WIDTH/2-70., HEIGHT/2-30.))
     Screen.blit(msg,  (WIDTH/2-130., HEIGHT/2+60.))
+    BallSpin = 0
 
     while waitForKeyPress() == None:
         pygame.display.update()
 
 def createObjects() :
-    global Background, Paddle1, Paddle2, PaddleLoc,  \
+    global Background, Paddle1, Paddle2, previousPaddleLoc, PaddleLoc,  \
         BallLoc, BallVelocity, Scores, imgBall
 
     # Creating 2 Paddles, a ball and background.
@@ -53,6 +54,7 @@ def createObjects() :
 
 
     # some definitions
+    previousPaddleLoc = [[BORDERMARGIN, HEIGHT / 2 - PADDLEH / 2.], [WIDTH - BORDERMARGIN - PADDLEW, HEIGHT / 2 - PADDLEH / 2.]]
     PaddleLoc = [[BORDERMARGIN, HEIGHT/2  - PADDLEH/2.],[WIDTH-BORDERMARGIN-PADDLEW, HEIGHT/2 - PADDLEH/2.]]
     BallLoc = [WIDTH/2-8, HEIGHT/2-8]
     BallVelocity = [BALLSPEED, BALLSPEED]
@@ -77,7 +79,8 @@ def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2) :
     Screen.blit(imgBall,(ballLoc[0], ballLoc[1]))
 
 def setPlayer(y) :
-    global PaddleLoc
+    global previousPaddleLoc, PaddleLoc
+    previousPaddleLoc[0][1] = PaddleLoc[0][1]
     PaddleLoc[0][1] = y
 
 def processInput() :
@@ -104,17 +107,23 @@ def getTimeSincePreviousFrame(clock) :
     return time_sec
 
 def MoveBall(ballPosition, velocity, dt) :
-    ballPosition[0] += velocity[0]*dt
-    ballPosition[1] += velocity[1]*dt
+    global BallSpin
+    perpendicular = [-velocity[1], velocity[0]]
+    velocity[0] += perpendicular[0]*BallSpin/12000
+    velocity[1] += perpendicular[1]*BallSpin /12000
+    print(BallSpin)
+    ballPosition[0] += (velocity[0])*dt
+    ballPosition[1] += (velocity[1])*dt
 
 
 def MovePlayerPaddle(loc, updown, speed, dt) :
     loc[1] += updown*speed*dt
 
-def MoveAI(loc, ballPos, speed, dt ):
+def MoveAI(prevLoc, loc, ballPos, speed, dt ):
     PaddleMove = PADDLESPEED * dt
 
     # AI of the computer.
+    prevLoc[1] = loc[1]
     if ballPos[0] >= WIDTH/2.:
         if loc[1] < ballPos[1]:
             loc[1] += PaddleMove
@@ -127,29 +136,38 @@ def restrictPaddle(loc) :
     if loc[1] >= maxY : loc[1] = maxY
     if loc[1] <= minY : loc[1] = minY
 
-def collisionHandle(player, computer, ballLoc, ballVel, scores) :
+def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc, ballVel, scores) :
+    global BallSpin, BallVelocity
 
     ballWidth = 16
 
+    playerMove = player[1] - previousPlayer[1]
+    computerMove = computer[1] - previousComputer[1]
     # ball hits player paddle?
     if ballLoc[0] <= player[0] + PADDLEW:
         if ballLoc[1] >= player[1] - ballWidth and ballLoc[1] <= player[1] + PADDLEH:
             ballLoc[0] = player[0] + PADDLEW
             ballVel[0] = -ballVel[0]
+            BallSpin -= playerMove
     # ball hits computer's paddle?
     if ballLoc[0] >= computer[0] - ballWidth:
         if ballLoc[1] >= computer[1] - ballWidth and ballLoc[1] <= computer[1] + PADDLEH:
             ballLoc[0] = computer[0] - ballWidth
             ballVel[0] = -ballVel[0]
+            BallSpin += computerMove
 
     # player missed the ball?
     if ballLoc[0] < BORDERMARGIN+PADDLEW:
         scores[1] += 1
         ballLoc[0], ballLoc[1] = WIDTH / 2 - ballWidth / 2, HEIGHT / 2 - ballWidth / 2
+        BallVelocity = [BALLSPEED, BALLSPEED]
+        BallSpin = 0.
         player[1] = HEIGHT/2-ballWidth/2
     elif ballLoc[0] > WIDTH-BORDERMARGIN:
         scores[0] += 1
         ballLoc[0], ballLoc[1] = WIDTH / 2 - ballWidth / 2, HEIGHT / 2 - ballWidth / 2
+        BallVelocity = [-BALLSPEED, BALLSPEED]
+        BallSpin = 0.
         computer[1] = HEIGHT/2-ballWidth/2
 
     # bounce at the bottom and up border
@@ -162,7 +180,7 @@ def collisionHandle(player, computer, ballLoc, ballVel, scores) :
 
 
 def main() :
-    global Background, Paddle1, Paddle2, PaddleLoc, BallLoc, BallVelocity, Scores
+    global Background, Paddle1, Paddle2, previousPaddleLoc, PaddleLoc, BallLoc, BallVelocity, Scores
 
     init()
     createObjects()
@@ -178,12 +196,12 @@ def main() :
         dt = getTimeSincePreviousFrame(clock)
 
         MoveBall(BallLoc, BallVelocity, dt)
-        MoveAI(PaddleLoc[1], BallLoc, PADDLESPEED, dt)
+        MoveAI(previousPaddleLoc[1], PaddleLoc[1], BallLoc, PADDLESPEED, dt)
 
         restrictPaddle(PaddleLoc[0])
         restrictPaddle(PaddleLoc[1])
 
-        collisionHandle(PaddleLoc[0], PaddleLoc[1], BallLoc, BallVelocity, Scores)
+        collisionHandle(previousPaddleLoc[0], PaddleLoc[0], previousPaddleLoc[1],  PaddleLoc[1], BallLoc, BallVelocity, Scores)
 
         pygame.display.update()
 

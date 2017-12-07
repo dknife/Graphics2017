@@ -37,8 +37,8 @@
       <file leaf-file-name="pong2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pygame/pong2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-447">
-              <caret line="162" column="0" lean-forward="true" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+            <state relative-caret-position="170">
+              <caret line="162" column="45" lean-forward="true" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -145,10 +145,10 @@
       <find>terminate</find>
       <find>BarMove</find>
       <find>Bar</find>
-      <find>PaddleLoc</find>
       <find>FONT</find>
       <find>10</find>
       <find>PlayerDire</find>
+      <find>PaddleLoc</find>
     </findStrings>
     <replaceStrings>
       <replace>BarLoc[1][1]</replace>
@@ -193,9 +193,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1942" />
+    <option name="x" value="-3" />
+    <option name="width" value="1934" />
     <option name="height" value="1042" />
   </component>
   <component name="ProjectView">
@@ -565,10 +564,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-3" y="0" width="1934" height="1042" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22135417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22228034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.274673" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -813,8 +812,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pygame/pong2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-447">
-          <caret line="162" column="0" lean-forward="true" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="162" column="45" lean-forward="true" selection-start-line="162" selection-start-column="45" selection-end-line="162" selection-end-column="45" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
