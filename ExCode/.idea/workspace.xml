@@ -12,43 +12,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="multiTexture.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Texture/multiTexture.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2139">
-              <caret line="100" column="24" lean-forward="false" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tetris.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pygame/tetris.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7981">
-              <caret line="348" column="32" lean-forward="false" selection-start-line="348" selection-start-column="8" selection-end-line="348" selection-end-column="32" />
-              <folding>
-                <element signature="e#152#184#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pong v1.0.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/pong v1.0.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2714">
-              <caret line="121" column="22" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
+=======
       <file leaf-file-name="pong.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pygame/pong.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3266">
-              <caret line="145" column="41" lean-forward="true" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
+            <state relative-caret-position="3108">
+              <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="122" selection-end-column="32" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -56,6 +28,74 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Step6.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step6.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5068">
+              <caret line="184" column="36" lean-forward="false" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pong2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pygame/pong2.py">
+>>>>>>> origin/master
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="210" column="57" lean-forward="false" selection-start-line="210" selection-start-column="57" selection-end-line="210" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Step1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Step2.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2604">
+              <caret line="96" column="29" lean-forward="false" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file leaf-file-name="pong.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/pong.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3266">
+              <caret line="145" column="41" lean-forward="true" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
+=======
+      <file leaf-file-name="Step3.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3332">
+              <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+>>>>>>> origin/master
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
       <file leaf-file-name="bouncingBall.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pygame/bouncingBall.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -85,33 +125,32 @@
       </file>
       <file leaf-file-name="surface.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/surface.py">
+=======
+      <file leaf-file-name="Step4.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step4.py">
+>>>>>>> origin/master
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6969">
-              <caret line="303" column="36" lean-forward="false" selection-start-line="303" selection-start-column="8" selection-end-line="303" selection-end-column="36" />
+            <state relative-caret-position="3612">
+              <caret line="132" column="16" lean-forward="false" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="draw.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/draw.py">
+      <file leaf-file-name="Step5.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="48" />
+            <state relative-caret-position="4704">
+              <caret line="171" column="82" lean-forward="false" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShaderClass.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VBO/ShaderClass.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="17" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="64" selection-end-column="23" />
-              <folding>
-                <element signature="e#16#39#0" expanded="true" />
-              </folding>
-            </state>
+      <file leaf-file-name="PokeBall.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pygame/PokeBall.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -126,8 +165,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sys</find>
-      <find>shader</find>
       <find>COS</find>
       <find>sin</find>
       <find>abs</find>
@@ -151,14 +188,28 @@
       <find>terminate</find>
       <find>BarMove</find>
       <find>Bar</find>
+<<<<<<< HEAD
       <find>BallVelocity</find>
+=======
+      <find>FONT</find>
+      <find>10</find>
+      <find>PlayerDire</find>
+      <find>PaddleLoc</find>
+      <find>0</find>
+      <find>1</find>
+      <find>print</find>
+>>>>>>> origin/master
     </findStrings>
     <replaceStrings>
       <replace>BarLoc[1][1]</replace>
       <replace>BarSpeed</replace>
       <replace>BallSpeed[1]</replace>
       <replace>Paddle</replace>
+<<<<<<< HEAD
       <replace>BALLVELOCITY</replace>
+=======
+      <replace>Font</replace>
+>>>>>>> origin/master
     </replaceStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -184,16 +235,33 @@
         <option value="$PROJECT_DIR$/Texture/multiTexture.py" />
         <option value="$PROJECT_DIR$/pygame/tetris.py" />
         <option value="$USER_HOME$/Downloads/pong v1.0.py" />
+        <option value="$PROJECT_DIR$/pygame/StepByStepGame/Step1.py" />
+        <option value="$PROJECT_DIR$/pygame/StepByStepGame/Step2.py" />
         <option value="$PROJECT_DIR$/pygame/pong.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/pygame/bouncingBall.py" />
+=======
+        <option value="$PROJECT_DIR$/pygame/StepByStepGame/Step3.py" />
+        <option value="$PROJECT_DIR$/pygame/StepByStepGame/Step4.py" />
+        <option value="$PROJECT_DIR$/pygame/StepByStepGame/Step5.py" />
+        <option value="$PROJECT_DIR$/pygame/StepByStepGame/Step6.py" />
+        <option value="$PROJECT_DIR$/pygame/pong2.py" />
+>>>>>>> origin/master
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="2300" />
     <option name="y" value="43" />
     <option name="width" value="1292" />
     <option name="height" value="972" />
+=======
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1942" />
+    <option name="height" value="1042" />
+>>>>>>> origin/master
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -210,19 +278,13 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+      <pane id="Scratches" />
+>>>>>>> origin/master
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="ExCode" />
@@ -285,6 +347,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="pygame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StepByStepGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ExCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Mesh" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -305,7 +385,11 @@
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+      <pane id="Scope" />
+>>>>>>> origin/master
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -313,7 +397,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../GameMath2017/Ex01" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Development\Graphics2017\ExCode\pygame" />
+      <recent name="D:\Development\Graphics2017\ExCode\pygame\StepByStepGame" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Development\Graphics2017\ExCode\pygame" />
       <recent name="D:\YMKang_Work\lectureAndStudy\2017\Graphics2017\Graphics2017\ExCode" />
       <recent name="D:\YMKang_Work\lectureAndStudy\2017\Graphics2017\Graphics2017\ExCode\Mesh" />
       <recent name="D:\YMKang_Work\lectureAndStudy\2017\Graphics2017\Graphics2017\ExCode\Ex04_Lights" />
@@ -331,80 +420,121 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Python.matrixVis">
     <configuration default="false" name="meshLoader" type="PythonConfigurationType" factoryName="Python" temporary="true">
+=======
+  <component name="RunManager" selected="Python.pong2">
+    <configuration default="false" name="Step3" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> origin/master
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mesh" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame/StepByStepGame" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ExCode" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mesh/meshLoader.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/StepByStepGame/Step3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+<<<<<<< HEAD
     <configuration default="false" name="tetris" type="PythonConfigurationType" factoryName="Python" temporary="true">
+=======
+    <configuration default="false" name="Step4" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> origin/master
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame/StepByStepGame" />
+>>>>>>> origin/master
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ExCode" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/tetris.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/StepByStepGame/Step4.py" />
+>>>>>>> origin/master
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+<<<<<<< HEAD
     <configuration default="false" name="pong" type="PythonConfigurationType" factoryName="Python" temporary="true">
+=======
+    <configuration default="false" name="Step5" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> origin/master
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame" />
+=======
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame/StepByStepGame" />
+>>>>>>> origin/master
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ExCode" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/pong.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/StepByStepGame/Step5.py" />
+>>>>>>> origin/master
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+<<<<<<< HEAD
     <configuration default="false" name="bouncingBall" type="PythonConfigurationType" factoryName="Python" temporary="true">
+=======
+    <configuration default="false" name="Step6" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> origin/master
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pygame/StepByStepGame" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ExCode" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/bouncingBall.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/StepByStepGame/Step6.py" />
+>>>>>>> origin/master
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+<<<<<<< HEAD
     <configuration default="false" name="matrixVis" type="PythonConfigurationType" factoryName="Python" temporary="true">
+=======
+    <configuration default="false" name="pong2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+>>>>>>> origin/master
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -416,7 +546,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ExCode" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../GameMath2017/Ex01/matrixVis.py" />
+=======
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pygame/pong2.py" />
+>>>>>>> origin/master
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -519,6 +653,7 @@
       <method />
     </configuration>
     <list size="5">
+<<<<<<< HEAD
       <item index="0" class="java.lang.String" itemvalue="Python.meshLoader" />
       <item index="1" class="java.lang.String" itemvalue="Python.tetris" />
       <item index="2" class="java.lang.String" itemvalue="Python.pong" />
@@ -532,6 +667,21 @@
         <item index="2" class="java.lang.String" itemvalue="Python.pong" />
         <item index="3" class="java.lang.String" itemvalue="Python.tetris" />
         <item index="4" class="java.lang.String" itemvalue="Python.meshLoader" />
+=======
+      <item index="0" class="java.lang.String" itemvalue="Python.Step3" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Step4" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Step5" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Step6" />
+      <item index="4" class="java.lang.String" itemvalue="Python.pong2" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python.pong2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Step6" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Step5" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Step4" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Step3" />
+>>>>>>> origin/master
       </list>
     </recent_temporary>
   </component>
@@ -549,19 +699,31 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="2300" y="43" width="1292" height="972" extended-state="0" />
     <editor active="true" />
+=======
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+>>>>>>> origin/master
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3330721" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38586327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25564805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39952436" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> origin/master
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -584,6 +746,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Ex02_primitives/modules/module_drawCircle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -628,6 +791,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> origin/master
     <entry file="file://$PROJECT_DIR$/Ex02_primitives/ex02_c_scene.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -740,6 +905,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Ex03_Transform/solar.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="759">
@@ -793,91 +959,117 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="23" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="76" selection-end-column="23" />
+=======
+    <entry file="file://$PROJECT_DIR$/Ex03_Transform/solar.py" />
+    <entry file="file://$PROJECT_DIR$/Ex04_Lights/Lights.py" />
+    <entry file="file://$PROJECT_DIR$/Texture/textureLoading.py" />
+    <entry file="file://$PROJECT_DIR$/VBO/ex1.py" />
+    <entry file="file://$PROJECT_DIR$/Mesh/cloth.txt" />
+    <entry file="file://$PROJECT_DIR$/Mesh/complex.txt" />
+    <entry file="file://$PROJECT_DIR$/Mesh/meshLoader.py" />
+    <entry file="file://$PROJECT_DIR$/Mesh/Shader.py" />
+    <entry file="file://$PROJECT_DIR$/Mesh/smoothRender.py" />
+    <entry file="file://$PROJECT_DIR$/Texture/multiTexture.py" />
+    <entry file="file://$PROJECT_DIR$/VBO/ShaderClass.py" />
+    <entry file="file://$USER_HOME$/Downloads/pong v1.0.py" />
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/draw.py" />
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/surface.py" />
+    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/time.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/pyglet/clock.py" />
+    <entry file="file://$PROJECT_DIR$/pygame/tetris.py" />
+    <entry file="file://$PROJECT_DIR$/pygame/ball.png" />
+    <entry file="file://$PROJECT_DIR$/pygame/ballS.png" />
+    <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+>>>>>>> origin/master
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mesh/smoothRender.py">
+    <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step2.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2645">
           <caret line="121" column="29" lean-forward="false" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Texture/multiTexture.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2139">
-          <caret line="100" column="24" lean-forward="false" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VBO/ShaderClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="17" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="64" selection-end-column="23" />
+=======
+        <state relative-caret-position="2604">
+          <caret line="96" column="29" lean-forward="false" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
           <folding>
-            <element signature="e#16#39#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+>>>>>>> origin/master
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/pong v1.0.py">
+    <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2714">
-          <caret line="121" column="22" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+        <state relative-caret-position="3612">
+          <caret line="132" column="16" lean-forward="false" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/draw.py">
+    <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="48" />
+        <state relative-caret-position="4704">
+          <caret line="171" column="82" lean-forward="false" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/surface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6969">
-          <caret line="303" column="36" lean-forward="false" selection-start-line="303" selection-start-column="8" selection-end-line="303" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1235271266/pygame/time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="25" column="12" lean-forward="false" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/pyglet/clock.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="348" column="25" lean-forward="true" selection-start-line="348" selection-start-column="25" selection-end-line="348" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pygame/tetris.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7981">
-          <caret line="348" column="32" lean-forward="false" selection-start-line="348" selection-start-column="8" selection-end-line="348" selection-end-column="32" />
-          <folding>
-            <element signature="e#152#184#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pygame/ball.png">
+    <entry file="file://$PROJECT_DIR$/pygame/PokeBall.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pygame/pong.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3108">
+          <caret line="114" column="0" lean-forward="false" selection-start-line="114" selection-start-column="0" selection-end-line="122" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pygame/StepByStepGame/Step6.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5068">
+          <caret line="184" column="36" lean-forward="false" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/sets/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pygame/pong2.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="3266">
           <caret line="145" column="41" lean-forward="true" selection-start-line="145" selection-start-column="41" selection-end-line="145" selection-end-column="41" />
+=======
+        <state relative-caret-position="252">
+          <caret line="210" column="57" lean-forward="false" selection-start-line="210" selection-start-column="57" selection-end-line="210" selection-end-column="57" />
+>>>>>>> origin/master
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
