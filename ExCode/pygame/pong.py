@@ -42,7 +42,11 @@ def init() :
 
 def createObjects() :
     global Background, Paddle1, Paddle2, PaddleLoc,  \
+<<<<<<< HEAD
+        BallLoc, PlayerDirection, BallVelocity, Scores, imgBall
+=======
         BallLoc, BallVelocity, Scores, imgBall
+>>>>>>> origin/master
 
     # Creating 2 Paddles, a ball and background.
     Background = pygame.Surface((WIDTH, HEIGHT))
@@ -66,7 +70,11 @@ def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2) :
     global Background, Paddle1, Paddle2, imgBall
     scoreText0 = Font.render(str(score[0]), True, (255, 255, 255))
     scoreText1 = Font.render(str(score[1]), True, (255, 255, 255))
+<<<<<<< HEAD
+    msg = Font.render(str(ballLoc[0])+","+str(ballLoc[1]), True, (255, 255, 255))
+=======
 
+>>>>>>> origin/master
     Screen.blit(Background, (0, 0))
     frame = pygame.draw.rect(Screen, (0, 255, 0), Rect((BORDERMARGIN,BORDERMARGIN), (WIDTH-BORDERMARGIN*2, HEIGHT-BORDERMARGIN*2)), 2)
     middle_line = pygame.draw.aaline(Screen, (255, 255, 255), (WIDTH/2, 5), (WIDTH/2, HEIGHT-5))
@@ -74,7 +82,11 @@ def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2) :
     Screen.blit(Paddle2, (paddleLoc2[0], paddleLoc2[1]))
     Screen.blit(scoreText0, (WIDTH/4., HEIGHT/4.))
     Screen.blit(scoreText1, (WIDTH*3/4, HEIGHT/4))
+<<<<<<< HEAD
+    Screen.blit(msg, (WIDTH/2 - 200, 10))
+=======
 
+>>>>>>> origin/master
     Screen.blit(imgBall,(ballLoc[0], ballLoc[1]))
 
 def setPlayer(y) :
@@ -82,10 +94,17 @@ def setPlayer(y) :
     PaddleLoc[0][1] = y
 
 def processInput() :
+<<<<<<< HEAD
+    global PlayerDirection
+
+    for event in pygame.event.get():
+        if event.type == QUIT:
+=======
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
+>>>>>>> origin/master
             exit()
         if event.type == pygame.MOUSEMOTION:
             position = [event.pos[0], event.pos[1]]
@@ -95,7 +114,16 @@ def processInput() :
             if event.key == K_ESCAPE:
                 pygame.quit()
                 exit()
+<<<<<<< HEAD
+            if event.key == K_UP:
+                PlayerDirection = -1.
+            elif event.key == K_DOWN:
+                PlayerDirection = 1.
+        elif event.type == KEYUP:
+            PlayerDirection = 0.
+=======
 
+>>>>>>> origin/master
 
 def getTimeSincePreviousFrame(clock) :
     # movement of circle
@@ -163,7 +191,11 @@ def collisionHandle(player, computer, ballLoc, ballVel, scores) :
 
 
 def main() :
+<<<<<<< HEAD
+    global Background, Paddle1, Paddle2, PaddleLoc, BallLoc, PlayerDirection, BallVelocity, Scores
+=======
     global Background, Paddle1, Paddle2, PaddleLoc, BallLoc, BallVelocity, Scores
+>>>>>>> origin/master
 
     init()
     createObjects()
@@ -171,6 +203,10 @@ def main() :
     # clock objects
     clock = pygame.time.Clock()
 
+<<<<<<< HEAD
+    PlayerDirection = 0.
+=======
+>>>>>>> origin/master
     while True:  # Game Loop
 
         processInput()
@@ -179,6 +215,11 @@ def main() :
         dt = getTimeSincePreviousFrame(clock)
 
         MoveBall(BallLoc, BallVelocity, dt)
+<<<<<<< HEAD
+        MovePlayerPaddle(PaddleLoc[0], PlayerDirection, PADDLESPEED, dt)
+
+=======
+>>>>>>> origin/master
         MoveAI(PaddleLoc[1], BallLoc, PADDLESPEED, dt)
 
         restrictPaddle(PaddleLoc[0])
