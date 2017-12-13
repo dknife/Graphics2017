@@ -20,19 +20,25 @@ class txtFx :
     msg = "none"
     life = 1.0
     loc = [0,0]
-    eTime = 0
-    def set(self, msgStr, lifeTime, location):
+    vel = [0,0]
+    gravity = [0,0]
+
+    def set(self, msgStr, lifeTime, location, velocity=[0,0], g=[0,50]):
         self.msg = msgStr
         self.life = lifeTime
         self.loc = location
-        self.eTime = 0.0
+        self.gravity = g
+        self.vel = velocity
+
     def show(self, screen, font, dt):
         txt = font.render(str(self.msg), True, (255, 255, 255))
-        curY = self.loc[1] - 180 * self.eTime + 260 * self.eTime * self.eTime
-        screen.blit(txt, (self.loc[0], curY))
+        for i in range(2) :
+            self.vel[i] += self.gravity[i] * dt
+            self.loc[i] += self.vel[i]*dt
 
+        screen.blit(txt, (self.loc[0], self.loc[1]))
         self.life -= dt
-        self.eTime += dt
+
 
 
 def waitForKeyPress():
@@ -48,10 +54,13 @@ def waitForKeyPress():
     return None
 
 def init() :
-    global Screen, Font, BallSpin, Level, TextEffectSet, BallSpeed, PaddleSpeed, BoingSound
+    global Screen, Font, BallSpin, Level, TextEffectSet, BallSpeed, PaddleSpeed, BoingSound, ComputerPaddleStalling, isBallMoving, TotalScore
 
     BallSpeed = 300
     PaddleSpeed = 200
+    ComputerPaddleStalling = 1.0
+    isBallMoving = True
+    TotalScore = 100
     pygame.init()
     Screen = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
     pygame.display.set_caption('Pong')
@@ -64,7 +73,7 @@ def init() :
     BallSpin = 0
     Level = 1
     a = txtFx()
-    a.set("Level 1: Lets Play!", 2.0, [WIDTH/2.0, HEIGHT/2.0])
+    a.set("Level 1: Lets Play!", 2.0, [WIDTH/2.0, HEIGHT/2.0], [0,-100], [0,300])
     print(a.msg)
     TextEffectSet = set([a])
     while waitForKeyPress() == None:
@@ -79,7 +88,7 @@ def createObjects() :
 
     # Creating 2 Paddles, a ball and background.
     Background = pygame.Surface((WIDTH, HEIGHT))
-    Background.fill((0, 0, 255))
+    Background.fill((0, 0, 128))
 
     Paddle1 = pygame.image.load("paddle1.png")
     Paddle2 = pygame.image.load("paddle2.png")
@@ -96,15 +105,23 @@ def createObjects() :
 
 
 def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2, dt) :
-    global Background, Paddle1, Paddle2, imgBall, TextEffectSet
+    global Background, Paddle1, Paddle2, imgBall, TextEffectSet, isBallMoving, Level, TotalScore
+
+    levelText = Font.render("LEVEL: "+str(Level), True, (255, 255, 0))
+    scoreText = Font.render("SCORE: " + str(TotalScore), True, (255, 255, 0))
     scoreText0 = Font.render(str(score[PLAYER]), True, (255, 255, 255))
     scoreText1 = Font.render(str(score[COMPUTER]), True, (255, 255, 255))
 
     Screen.blit(Background, (0, 0))
     frame = pygame.draw.rect(Screen, (0, 255, 0), Rect((BORDERMARGIN,BORDERMARGIN), (WIDTH-BORDERMARGIN*2, HEIGHT-BORDERMARGIN*2)), 2)
     middle_line = pygame.draw.aaline(Screen, (255, 255, 255), (WIDTH/2, 5), (WIDTH/2, HEIGHT-5))
+    if isBallMoving is False :
+        Screen.blit(Font.render("Click Mouse to Play", True, (255, 0, 0)), (WIDTH/2.0-100, HEIGHT/2.0))
+
     Screen.blit(Paddle1, (paddleLoc1[0], paddleLoc1[1]))
     Screen.blit(Paddle2, (paddleLoc2[0], paddleLoc2[1]))
+    Screen.blit(levelText, (WIDTH / 4., 20))
+    Screen.blit(scoreText, (WIDTH *3 / 4., 20))
     Screen.blit(scoreText0, (WIDTH/4., HEIGHT/4.))
     Screen.blit(scoreText1, (WIDTH*3/4, HEIGHT/4))
     Screen.blit(imgBall,(ballLoc[0], ballLoc[1]))
@@ -126,15 +143,18 @@ def setPlayer(y) :
     PaddleLoc[PLAYER][1] = y
 
 def processInput() :
+    global isBallMoving
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             exit()
-        if event.type == pygame.MOUSEMOTION:
+        if event.type == pygame.MOUSEMOTION and isBallMoving:
             position = [event.pos[0], event.pos[1]]
             restrictPaddle(position)
             setPlayer(position[1])
+        if event.type == pygame.MOUSEBUTTONDOWN :
+            isBallMoving = True
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 pygame.quit()
@@ -149,7 +169,10 @@ def getTimeSincePreviousFrame(clock) :
     return time_sec
 
 def MoveBall(ballPosition, velocity, dt) :
-    global BallSpin, TextEffectSet
+    global BallSpin, TextEffectSet, isBallMoving
+
+    if isBallMoving is not True : return
+
     perpendicular = [-velocity[1], velocity[0]]
     velocity[0] += perpendicular[0]*BallSpin/12000
     velocity[1] += perpendicular[1]*BallSpin /12000
@@ -163,7 +186,11 @@ def MovePlayerPaddle(loc, updown, speed, dt) :
 
 
 def MoveAI(prevLoc, loc, ballPos, speed, dt ):
-    PaddleMove = PaddleSpeed * dt
+    global PaddleSpeed, ComputerPaddleStalling, isBallMoving
+
+    if isBallMoving is False : return
+
+    PaddleMove = ComputerPaddleStalling*PaddleSpeed * dt
 
     # AI of the computer.
     prevLoc[1] = loc[1]
@@ -180,65 +207,86 @@ def restrictPaddle(loc) :
     if loc[1] <= minY : loc[1] = minY
 
 def increaseScore(scores, who) :
-    global Level, BallSpeed, PaddleSpeed
+    global Level, BallSpeed, PaddleSpeed, ComputerPaddleStalling
+
     scores[who] += 1
+    ComputerPaddleStalling = 1.0
+
     if who is PLAYER and scores[who]%5 is 0 :
         Level += 1
         BallSpeed *= 1.2
         PaddleSpeed *= 1.5
         if PaddleSpeed > 2.0*BallSpeed : PaddleSpeed = 2.0*BallSpeed
         levelIncreaseMsg = txtFx()
-        levelIncreaseMsg.set("Level"+str(Level), 3, [WIDTH/2.0-100, HEIGHT/2.0])
+        levelIncreaseMsg.set("Level"+str(Level), 3, [WIDTH/2.0-100, HEIGHT/2.0], [0,300], [0,-300])
         TextEffectSet.add(levelIncreaseMsg)
 
 
 
 def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc, ballVel, scores) :
-    global BallSpin, BallVelocity, BoingSound, TextEffectSet
+    global BallSpin, BallVelocity, BoingSound, TextEffectSet, ComputerPaddleStalling, isBallMoving, TotalScore
 
     ballWidth = 16
+
 
     playerMove = player[1] - previousPlayer[1]
     computerMove = computer[1] - previousComputer[1]
     # ball hits player paddle?
-    if ballLoc[0] <= player[0] + PADDLEW:
+    if ballLoc[0] < player[0] + PADDLEW:
         if ballLoc[1] >= player[1] - ballWidth and ballLoc[1] <= player[1] + PADDLEH:
             ballLoc[0] = player[0] + PADDLEW
             ballVel[0] = -ballVel[0]
+            ballVel[0] *= 1.1
             BallSpin -= playerMove
             BoingSound.play()
             msg = txtFx()
-            msg.set("boing!", 3, [ballLoc[0], ballLoc[1]])
+            msg.set("+"+str(Level*10), 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-300])
             TextEffectSet.add(msg)
+            TotalScore += 10*Level
     # ball hits computer's paddle?
-    if ballLoc[0] >= computer[0] - ballWidth:
+    if ballLoc[0] > computer[0] - ballWidth:
         if ballLoc[1] >= computer[1] - ballWidth and ballLoc[1] <= computer[1] + PADDLEH:
             ballLoc[0] = computer[0] - ballWidth
             ballVel[0] = -ballVel[0]
+            ComputerPaddleStalling *= 0.8
             BallSpin += computerMove
             BoingSound.play()
 
     # player missed the ball?
     if ballLoc[0] < BORDERMARGIN:
         increaseScore(Scores, COMPUTER)
-        ballLoc[0], ballLoc[1] = WIDTH / 2 - ballWidth / 2, HEIGHT / 2 - ballWidth / 2
+        ballLoc[0], ballLoc[1] = player[0]+PADDLEW, player[1]+PADDLEH/2.0
+        isBallMoving = False
         BallVelocity = [BallSpeed, BallSpeed]
         BallSpin = 0.
-        player[1] = HEIGHT/2-ballWidth/2
+        #player[1] = HEIGHT/2-ballWidth/2
     elif ballLoc[0] > WIDTH-BORDERMARGIN:
         increaseScore(Scores, PLAYER)
-        ballLoc[0], ballLoc[1] = WIDTH / 2 - ballWidth / 2, HEIGHT / 2 - ballWidth / 2
+        msg = txtFx()
+        msg.set("+"+str(Level*100), 3, [WIDTH/2., HEIGHT/3.0], [0,100], [0,-300])
+        TextEffectSet.add(msg)
+        TotalScore += Level*100
+        ballLoc[0], ballLoc[1] = computer[0]-ballWidth, computer[1]+PADDLEH/2.0
+        isBallMoving = False
         BallVelocity = [-BallSpeed, BallSpeed]
         BallSpin = 0.
-        computer[1] = HEIGHT/2-ballWidth/2
+        #computer[1] = HEIGHT/2-ballWidth/2
 
     # bounce at the bottom and up border
     if ballLoc[1] <= BORDERMARGIN :
         BallVelocity[1] = -BallVelocity[1]
         ballLoc[1] = BORDERMARGIN
+        msg = txtFx()
+        msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0, 100], [0, -300])
+        TextEffectSet.add(msg)
+        TotalScore += 5
     elif ballLoc[1] >= HEIGHT-BORDERMARGIN-ballWidth :
         BallVelocity[1] = -BallVelocity[1]
         BallLoc[1] = HEIGHT-BORDERMARGIN-ballWidth
+        msg = txtFx()
+        msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0, 100], [0, -300])
+        TextEffectSet.add(msg)
+        TotalScore += 5
 
 
 def main() :
