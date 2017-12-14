@@ -22,21 +22,23 @@ class imgFx :
     loc = [0,0]
     vel = [0,0]
     gravity = [0,0]
+    size = [32,32]
     et = 0
 
-    def set(self, imgData, lifeTime, location, velocity=[0,0], g=[0,50]):
+    def set(self, imgData, lifeTime, location, velocity=[0,0], g=[0,50], size0=[32,32]):
         self.img = imgData
         self.life = lifeTime
         self.loc = location
         self.gravity = g
         self.vel = velocity
+        self.size = size0
 
     def show(self, screen, font, dt):
         for i in range(2) :
             self.vel[i] += self.gravity[i] * dt
             self.loc[i] += self.vel[i]*dt
         self.et += dt
-        w,h = int(32+200*self.et-500*self.et*self.et),int(32+200*self.et-500*self.et*self.et)
+        w,h = int(self.size[0]+200*self.et-500*self.et*self.et),int(self.size[1]+200*self.et-500*self.et*self.et)
         if w < 1 : w = 1
         if h < 1 : h = 1
         screen.blit(pygame.transform.scale(self.img, (w,h)), (self.loc[0], self.loc[1], 30, 30))
@@ -85,6 +87,8 @@ def init() :
 
     imgSprites = []
     imgSprites.append(pygame.image.load("boomSmall.png"))
+    imgSprites.append(pygame.image.load("yeah.png"))
+    imgSprites.append(pygame.image.load("oops.png"))
 
     BallSpeed = 300
     PaddleSpeed = 200
@@ -309,18 +313,22 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
         isBallMoving = False
         BallVelocity = [BallSpeed, BallSpeed]
         BallSpin = 0.
-        #player[1] = HEIGHT/2-ballWidth/2
+        fx = imgFx()
+        fx.set(imgSprites[2], 3, [ballLoc[0], ballLoc[1]], [0,0], [0, -300], [100,100])
+        ImageEffectSet.add(fx)
     elif ballLoc[0] > WIDTH-BORDERMARGIN:
         increaseScore(Scores, PLAYER)
         msg = txtFx()
-        msg.set("+"+str(Level*100), 3, [WIDTH/2., HEIGHT/3.0],[0,100], [0,-600])
+        msg.set("+"+str(Level*100), 3, [ballLoc[0], ballLoc[1]],[0,100], [0,-600])
         TextEffectSet.add(msg)
         TotalScore += Level*100
         ballLoc[0], ballLoc[1] = computer[0]-ballWidth, computer[1]+PADDLEH/2.0
         isBallMoving = False
         BallVelocity = [-BallSpeed, BallSpeed]
         BallSpin = 0.
-        #computer[1] = HEIGHT/2-ballWidth/2
+        fx = imgFx()
+        fx.set(imgSprites[1], 3, [ballLoc[0], ballLoc[1]], [0, 0], [0, -300], [100,100])
+        ImageEffectSet.add(fx)
 
     # bounce at the bottom and up border
     if ballLoc[1] <= BORDERMARGIN :
@@ -330,6 +338,9 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
         msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-600])
         TextEffectSet.add(msg)
         TotalScore += 5
+        fx = imgFx()
+        fx.set(imgSprites[0], 3, [ballLoc[0], ballLoc[1]], [ballVel[0] / 3., ballVel[1] / 3.], [0, -300])
+        ImageEffectSet.add(fx)
     elif ballLoc[1] >= HEIGHT-BORDERMARGIN-ballWidth :
         BallVelocity[1] = -BallVelocity[1]
         BallLoc[1] = HEIGHT-BORDERMARGIN-ballWidth
@@ -337,6 +348,9 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
         msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-600])
         TextEffectSet.add(msg)
         TotalScore += 5
+        fx = imgFx()
+        fx.set(imgSprites[0], 3, [ballLoc[0], ballLoc[1]], [ballVel[0] / 3., ballVel[1] / 3.], [0, -300])
+        ImageEffectSet.add(fx)
 
 
 def main() :
