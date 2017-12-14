@@ -48,10 +48,10 @@ def waitForKeyPress():
     return None
 
 def init() :
-    global Screen, Font, BallSpin, Level, TextEffectSet, BallSpeed, PaddleSpeed, BoingSound
+    global Screen, Font, BallSpin, Level, TextEffectSet, BallSpeed, PaddleSpeed, BoingSound, ComputerPaddleStalling
 
     BallSpeed = 300
-    PaddleSpeed = 200
+    PaddleSpeed = 300
     pygame.init()
     Screen = pygame.display.set_mode((WIDTH, HEIGHT), 0, 32)
     pygame.display.set_caption('Pong')
@@ -71,6 +71,7 @@ def init() :
         pygame.display.update()
 
     BoingSound = pygame.mixer.Sound("boing_x.wav")
+    ComputerPaddleStalling = 1.0
 
 
 def createObjects() :
@@ -163,7 +164,7 @@ def MovePlayerPaddle(loc, updown, speed, dt) :
 
 
 def MoveAI(prevLoc, loc, ballPos, speed, dt ):
-    PaddleMove = PaddleSpeed * dt
+    PaddleMove = ComputerPaddleStalling*PaddleSpeed * dt
 
     # AI of the computer.
     prevLoc[1] = loc[1]
@@ -180,12 +181,15 @@ def restrictPaddle(loc) :
     if loc[1] <= minY : loc[1] = minY
 
 def increaseScore(scores, who) :
-    global Level, BallSpeed, PaddleSpeed
+    global Level, BallSpeed, PaddleSpeed, ComputerPaddleStalling
+
+    ComputerPaddleStalling = 1.0
+
     scores[who] += 1
     if who is PLAYER and scores[who]%5 is 0 :
         Level += 1
-        BallSpeed *= 1.2
-        PaddleSpeed *= 1.5
+        BallSpeed *= 1.1
+        PaddleSpeed *= 1.2
         if PaddleSpeed > 2.0*BallSpeed : PaddleSpeed = 2.0*BallSpeed
         levelIncreaseMsg = txtFx()
         levelIncreaseMsg.set("Level"+str(Level), 3, [WIDTH/2.0-100, HEIGHT/2.0])
@@ -194,7 +198,7 @@ def increaseScore(scores, who) :
 
 
 def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc, ballVel, scores) :
-    global BallSpin, BallVelocity, BoingSound, TextEffectSet
+    global BallSpin, BallVelocity, BoingSound, TextEffectSet, ComputerPaddleStalling
 
     ballWidth = 16
 
@@ -205,10 +209,11 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
         if ballLoc[1] >= player[1] - ballWidth and ballLoc[1] <= player[1] + PADDLEH:
             ballLoc[0] = player[0] + PADDLEW
             ballVel[0] = -ballVel[0]
+            ballVel[0] *= 1.1
             BallSpin -= playerMove
             BoingSound.play()
             msg = txtFx()
-            msg.set("boing!", 3, [ballLoc[0], ballLoc[1]])
+            msg.set("Nice!", 3, [ballLoc[0], ballLoc[1]])
             TextEffectSet.add(msg)
     # ball hits computer's paddle?
     if ballLoc[0] >= computer[0] - ballWidth:
@@ -216,6 +221,7 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
             ballLoc[0] = computer[0] - ballWidth
             ballVel[0] = -ballVel[0]
             BallSpin += computerMove
+            ComputerPaddleStalling *= 0.8
             BoingSound.play()
 
     # player missed the ball?
