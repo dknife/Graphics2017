@@ -16,6 +16,29 @@ PADDLEH = 64
 BORDERMARGIN = 50
 
 
+class imgFx :
+    img = None
+    life = 1.0
+    loc = [0,0]
+    vel = [0,0]
+    gravity = [0,0]
+    et = 0
+
+    def set(self, imgData, lifeTime, location, velocity=[0,0], g=[0,50]):
+        self.img = imgData
+        self.life = lifeTime
+        self.loc = location
+        self.gravity = g
+        self.vel = velocity
+
+    def show(self, screen, font, dt):
+        for i in range(2) :
+            self.vel[i] += self.gravity[i] * dt
+            self.loc[i] += self.vel[i]*dt
+        self.et += dt
+        screen.blit(pygame.transform.scale(self.img, (int(32+50*self.et-10*self.et*self.et),int(32+50*self.et-10*self.et*self.et))), (self.loc[0], self.loc[1], 30, 30))
+        self.life -= dt
+
 class txtFx :
     msg = "none"
     life = 1.0
@@ -55,7 +78,10 @@ def waitForKeyPress():
 
 def init() :
 
-    global Screen, Font, BallSpin, Level, TextEffectSet, BallSpeed, PaddleSpeed, BoingSound, ComputerPaddleStalling, isBallMoving, TotalScore
+    global Screen, Font, BallSpin, Level, TextEffectSet, ImageEffectSet, BallSpeed, PaddleSpeed, BoingSound, ComputerPaddleStalling, isBallMoving, TotalScore, imgSprites
+
+    imgSprites = []
+    imgSprites.append(pygame.image.load("boomSmall.png"))
 
     BallSpeed = 300
     PaddleSpeed = 200
@@ -78,6 +104,7 @@ def init() :
     a.set("Level 1: Lets Play!", 2.0, [WIDTH/2.0, HEIGHT/2.0], [0,-100], [0,300])
     print(a.msg)
     TextEffectSet = set([a])
+    ImageEffectSet = set([])
     while waitForKeyPress() == None:
         pygame.display.update()
 
@@ -108,7 +135,7 @@ def createObjects() :
 
 
 def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2, dt) :
-    global Background, Paddle1, Paddle2, imgBall, TextEffectSet, isBallMoving, Level, TotalScore
+    global Background, Paddle1, Paddle2, imgBall, TextEffectSet, ImageEffectSet, isBallMoving, Level, TotalScore
 
     levelText = Font.render("LEVEL: "+str(Level), True, (255, 255, 0))
     scoreText = Font.render("SCORE: " + str(TotalScore), True, (255, 255, 0))
@@ -137,6 +164,15 @@ def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2, dt) :
 
     for item in removableItems :
         TextEffectSet.remove(item)
+
+    removableItems = set()
+    for item in ImageEffectSet :
+        item.show(Screen, Font, dt)
+        if item.life < 0  :
+            removableItems.add(item)
+
+    for item in removableItems :
+        ImageEffectSet.remove(item)
 
 
 
@@ -172,14 +208,13 @@ def getTimeSincePreviousFrame(clock) :
     return time_sec
 
 def MoveBall(ballPosition, velocity, dt) :
-    global BallSpin, TextEffectSet, isBallMoving
+    global BallSpin, isBallMoving
 
     if isBallMoving is not True : return
 
     perpendicular = [-velocity[1], velocity[0]]
     velocity[0] += perpendicular[0]*BallSpin/12000
     velocity[1] += perpendicular[1]*BallSpin /12000
-    #print(TextEffectSet)
     ballPosition[0] += (velocity[0])*dt
     ballPosition[1] += (velocity[1])*dt
 
@@ -229,7 +264,7 @@ def increaseScore(scores, who) :
 
 
 def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc, ballVel, scores) :
-    global BallSpin, BallVelocity, BoingSound, TextEffectSet, ComputerPaddleStalling, isBallMoving, TotalScore
+    global BallSpin, BallVelocity, BoingSound, TextEffectSet, ImageEffectSet, ComputerPaddleStalling, isBallMoving, TotalScore, imgSprites
 
 
     ballWidth = 16
@@ -246,10 +281,11 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
             BallSpin -= playerMove
             BoingSound.play()
             msg = txtFx()
-
-
-            msg.set("+"+str(Level*10), 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-300])
+            msg.set("+"+str(Level*10), 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-600])
             TextEffectSet.add(msg)
+            fx = imgFx()
+            fx.set(imgSprites[0], 3, [ballLoc[0], ballLoc[1]], [0,0], [0,0])
+            ImageEffectSet.add(fx)
             TotalScore += 10*Level
     # ball hits computer's paddle?
     if ballLoc[0] > computer[0] - ballWidth:
@@ -258,7 +294,6 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
             ballVel[0] = -ballVel[0]
             ComputerPaddleStalling *= 0.8
             BallSpin += computerMove
-            ComputerPaddleStalling *= 0.8
             BoingSound.play()
 
     # player missed the ball?
@@ -272,7 +307,7 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
     elif ballLoc[0] > WIDTH-BORDERMARGIN:
         increaseScore(Scores, PLAYER)
         msg = txtFx()
-        msg.set("+"+str(Level*100), 3, [WIDTH/2., HEIGHT/3.0], [0,100], [0,-300])
+        msg.set("+"+str(Level*100), 3, [WIDTH/2., HEIGHT/3.0],[0,100], [0,-600])
         TextEffectSet.add(msg)
         TotalScore += Level*100
         ballLoc[0], ballLoc[1] = computer[0]-ballWidth, computer[1]+PADDLEH/2.0
@@ -286,14 +321,14 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
         BallVelocity[1] = -BallVelocity[1]
         ballLoc[1] = BORDERMARGIN
         msg = txtFx()
-        msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0, 100], [0, -300])
+        msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-600])
         TextEffectSet.add(msg)
         TotalScore += 5
     elif ballLoc[1] >= HEIGHT-BORDERMARGIN-ballWidth :
         BallVelocity[1] = -BallVelocity[1]
         BallLoc[1] = HEIGHT-BORDERMARGIN-ballWidth
         msg = txtFx()
-        msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0, 100], [0, -300])
+        msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-600])
         TextEffectSet.add(msg)
         TotalScore += 5
 
