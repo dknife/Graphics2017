@@ -36,7 +36,10 @@ class imgFx :
             self.vel[i] += self.gravity[i] * dt
             self.loc[i] += self.vel[i]*dt
         self.et += dt
-        screen.blit(pygame.transform.scale(self.img, (int(32+50*self.et-10*self.et*self.et),int(32+50*self.et-10*self.et*self.et))), (self.loc[0], self.loc[1], 30, 30))
+        w,h = int(32+200*self.et-500*self.et*self.et),int(32+200*self.et-500*self.et*self.et)
+        if w < 1 : w = 1
+        if h < 1 : h = 1
+        screen.blit(pygame.transform.scale(self.img, (w,h)), (self.loc[0], self.loc[1], 30, 30))
         self.life -= dt
 
 class txtFx :
@@ -284,7 +287,7 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
             msg.set("+"+str(Level*10), 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-600])
             TextEffectSet.add(msg)
             fx = imgFx()
-            fx.set(imgSprites[0], 3, [ballLoc[0], ballLoc[1]], [0,0], [0,0])
+            fx.set(imgSprites[0], 3, [ballLoc[0], ballLoc[1]], [ballVel[0]/3., ballVel[1]/3.], [0,-300])
             ImageEffectSet.add(fx)
             TotalScore += 10*Level
     # ball hits computer's paddle?
@@ -295,6 +298,9 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
             ComputerPaddleStalling *= 0.8
             BallSpin += computerMove
             BoingSound.play()
+            fx = imgFx()
+            fx.set(imgSprites[0], 3, [ballLoc[0]-PADDLEW, ballLoc[1]], [ballVel[0] / 3., ballVel[1] / 3.], [0, -300])
+            ImageEffectSet.add(fx)
 
     # player missed the ball?
     if ballLoc[0] < BORDERMARGIN:
