@@ -25,6 +25,9 @@ class imgFx :
     size = [32,32]
     et = 0
     inc, dec = 0,0
+    w = 0
+    h = 0
+    rect = [loc[0], loc[1], w, h]
 
     def set(self, imgData, lifeTime, location, velocity=[0,0], g=[0,50], size0=[32,32], inc=200, dec=500):
         self.img = imgData
@@ -43,11 +46,12 @@ class imgFx :
         self.et += dt
         inc = self.inc
         dec = self.dec
-        w,h = int(self.size[0]+inc*self.et-dec*self.et*self.et),int(self.size[1]+inc*self.et-dec*self.et*self.et)
-        if w < 1 : w = 1
-        if h < 1 : h = 1
-        screen.blit(pygame.transform.scale(self.img, (w,h)), (self.loc[0], self.loc[1], 30, 30))
+        self.w,self.h = int(self.size[0]+inc*self.et-dec*self.et*self.et),int(self.size[1]+inc*self.et-dec*self.et*self.et)
+        if self.w < 1 : self.w = 1
+        if self.h < 1 : self.h = 1
+        screen.blit(pygame.transform.scale(self.img, (self.w,self.h)), (self.loc[0], self.loc[1], 30, 30))
         self.life -= dt
+        self.rect = [self.loc[0], self.loc[1], self.w, self.h]
 
 
 class txtFx :
@@ -72,6 +76,23 @@ class txtFx :
 
         screen.blit(txt, (self.loc[0], self.loc[1]))
         self.life -= dt
+
+def collide(rect1, rect2) :
+    x1 = rect1[0]
+    x2 = rect1[0] + rect1[2]
+    y1 = rect1[1]
+    y2 = rect1[1] + rect1[3]
+
+    if x1 > rect2[0] and x1 < rect2[0]+rect2[2] and y1 > rect2[1] and y1 < rect2[1]+rect2[3] :
+        return True
+    if x1 > rect2[0] and x1 < rect2[0]+rect2[2] and y2 > rect2[1] and y2 < rect2[1]+rect2[3] :
+        return True
+    if x2 > rect2[0] and x2 < rect2[0]+rect2[2] and y1 > rect2[1] and y1 < rect2[1]+rect2[3] :
+        return True
+    if x2 > rect2[0] and x2 < rect2[0]+rect2[2] and y2 > rect2[1] and y2 < rect2[1]+rect2[3] :
+        return True
+
+    return False
 
 
 
@@ -197,6 +218,16 @@ def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2, dt) :
         item.show(Screen, Font, dt)
         if item.life < 0  :
             removableItems.add(item)
+
+        if collide(item.rect, [paddleLoc2[0], paddleLoc2[1], PADDLEW, PADDLEH]) :
+            removableItems.add(item)
+            msg = txtFx()
+            msg.set("+100", 3, [paddleLoc2[0], paddleLoc2[1]], [0, 100], [0, -600])
+            TextEffectSet.add(msg)
+            TotalScore += 100
+            fx = imgFx()
+            fx.set(imgSprites[1], 3, [paddleLoc2[0], paddleLoc2[1]], [0, 0], [0, -300], [300, 100])
+            ImageEffectSet.add(fx)
 
     for item in removableItems :
         BulletSet.remove(item)
