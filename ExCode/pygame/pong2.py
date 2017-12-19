@@ -2,6 +2,9 @@ import pygame
 from pygame.locals import *
 from sys import *
 import math
+import random
+
+
 
 
 PLAYER = 0
@@ -11,6 +14,7 @@ WIDTH = 1200
 HEIGHT = 640
 PADDLEW = 16
 PADDLEH = 64
+BALLW = 16
 
 
 BORDERMARGIN = 50
@@ -111,13 +115,14 @@ def waitForKeyPress():
 def init() :
 
     global Screen, Font, BallSpin, Level, BallSpeed, PaddleSpeed, BoingSound, ComputerPaddleStalling, isBallMoving, TotalScore, \
-        TextEffectSet, ImageEffectSet, BulletSet, imgSprites
+        TextEffectSet, ImageEffectSet, ItemSet, imgSprites
 
     imgSprites = []
     imgSprites.append(pygame.image.load("boomSmall.png"))
     imgSprites.append(pygame.image.load("yeah.png"))
     imgSprites.append(pygame.image.load("oops.png"))
     imgSprites.append(pygame.image.load("bomb.png"))
+    imgSprites.append(pygame.image.load("apple.png"))
 
     BallSpeed = 300
     PaddleSpeed = 200
@@ -141,7 +146,7 @@ def init() :
     print(a.msg)
     TextEffectSet = set([a])
     ImageEffectSet = set([])
-    BulletSet = set([])
+    ItemSet = set([])
 
     while waitForKeyPress() == None:
         pygame.display.update()
@@ -214,23 +219,23 @@ def displayGameStatus(score, ballLoc, paddleLoc1, paddleLoc2, dt) :
 
 
     removableItems = set()
-    for item in BulletSet :
+    for item in ItemSet :
         item.show(Screen, Font, dt)
-        if item.life < 0  :
+        if item.life < 0  or item.rect[1] > HEIGHT:
             removableItems.add(item)
 
-        if collide(item.rect, [paddleLoc2[0], paddleLoc2[1], PADDLEW, PADDLEH]) :
+        if collide([ballLoc[0], ballLoc[1], BALLW, BALLW], item.rect) :
             removableItems.add(item)
             msg = txtFx()
-            msg.set("+100", 3, [paddleLoc2[0], paddleLoc2[1]], [0, 100], [0, -600])
+            msg.set("+100", 3, [ballLoc[0], ballLoc[1]], [0, 100], [0, -600])
             TextEffectSet.add(msg)
             TotalScore += 100
             fx = imgFx()
-            fx.set(imgSprites[1], 3, [paddleLoc2[0], paddleLoc2[1]], [0, 0], [0, -300], [300, 100])
+            fx.set(imgSprites[1], 3, [ballLoc[0], ballLoc[1]], [0, 0], [0, -300], [300, 100])
             ImageEffectSet.add(fx)
 
     for item in removableItems :
-        BulletSet.remove(item)
+        ItemSet.remove(item)
 
 def setPlayer(y) :
     global previousPaddleLoc, PaddleLoc
@@ -238,7 +243,7 @@ def setPlayer(y) :
     PaddleLoc[PLAYER][1] = y
 
 def processInput() :
-    global isBallMoving, BulletSet, PaddleLoc
+    global isBallMoving, PaddleLoc
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -250,11 +255,6 @@ def processInput() :
             setPlayer(position[1])
         if event.type == pygame.MOUSEBUTTONDOWN :
             if isBallMoving is not True : isBallMoving = True
-            else :
-                fx = imgFx()
-                fx.set(imgSprites[3], 100., [PaddleLoc[0][0]+PADDLEW+1, PaddleLoc[0][1]+PADDLEH/2.], [500, 0], [0,0], [32, 32], 0,0)
-                BulletSet.add(fx)
-
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 pygame.quit()
@@ -328,14 +328,14 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
     global BallSpin, BallVelocity, BoingSound, TextEffectSet, ImageEffectSet, ComputerPaddleStalling, isBallMoving, TotalScore, imgSprites
 
 
-    ballWidth = 16
+    
 
 
     playerMove = player[1] - previousPlayer[1]
     computerMove = computer[1] - previousComputer[1]
     # ball hits player paddle?
     if ballLoc[0] < player[0] + PADDLEW:
-        if ballLoc[1] >= player[1] - ballWidth and ballLoc[1] <= player[1] + PADDLEH:
+        if ballLoc[1] >= player[1] - BALLW and ballLoc[1] <= player[1] + PADDLEH:
             ballLoc[0] = player[0] + PADDLEW
             ballVel[0] = -ballVel[0]
             ballVel[0] *= 1.1
@@ -349,9 +349,9 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
             ImageEffectSet.add(fx)
             TotalScore += 10*Level
     # ball hits computer's paddle?
-    if ballLoc[0] > computer[0] - ballWidth:
-        if ballLoc[1] >= computer[1] - ballWidth and ballLoc[1] <= computer[1] + PADDLEH:
-            ballLoc[0] = computer[0] - ballWidth
+    if ballLoc[0] > computer[0] - BALLW:
+        if ballLoc[1] >= computer[1] - BALLW and ballLoc[1] <= computer[1] + PADDLEH:
+            ballLoc[0] = computer[0] - BALLW
             ballVel[0] = -ballVel[0]
             ComputerPaddleStalling *= 0.8
             BallSpin += computerMove
@@ -376,7 +376,7 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
         msg.set("+"+str(Level*100), 3, [ballLoc[0], ballLoc[1]],[0,100], [0,-600])
         TextEffectSet.add(msg)
         TotalScore += Level*100
-        ballLoc[0], ballLoc[1] = computer[0]-ballWidth, computer[1]+PADDLEH/2.0
+        ballLoc[0], ballLoc[1] = computer[0]-BALLW, computer[1]+PADDLEH/2.0
         isBallMoving = False
         BallVelocity = [-BallSpeed, BallSpeed]
         BallSpin = 0.
@@ -395,9 +395,9 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
         fx = imgFx()
         fx.set(imgSprites[0], 3, [ballLoc[0], ballLoc[1]], [ballVel[0] / 3., ballVel[1] / 3.], [0, -300])
         ImageEffectSet.add(fx)
-    elif ballLoc[1] >= HEIGHT-BORDERMARGIN-ballWidth :
+    elif ballLoc[1] >= HEIGHT-BORDERMARGIN-BALLW :
         BallVelocity[1] = -BallVelocity[1]
-        BallLoc[1] = HEIGHT-BORDERMARGIN-ballWidth
+        BallLoc[1] = HEIGHT-BORDERMARGIN-BALLW
         msg = txtFx()
         msg.set("+5", 3, [ballLoc[0], ballLoc[1]], [0,100], [0,-600])
         TextEffectSet.add(msg)
@@ -408,18 +408,25 @@ def collisionHandle(previousPlayer, player, previousComputer, computer, ballLoc,
 
 
 def main() :
-    global Background, Paddle1, Paddle2, previousPaddleLoc, PaddleLoc, BallLoc, BallVelocity, Scores
+    global Background, Paddle1, Paddle2, previousPaddleLoc, PaddleLoc, BallLoc, BallVelocity, Scores, ElapsedTime, ItemSet
 
     init()
     createObjects()
 
     # clock objects
     clock = pygame.time.Clock()
+    ElapsedTime = 0
 
     while True:  # Game Loop
 
         dt = getTimeSincePreviousFrame(clock)
+        ElapsedTime += dt
 
+        if ElapsedTime > 0.5 :
+            item = imgFx()
+            item.set(imgSprites[4], 3, [random.randint(BORDERMARGIN*4.0, WIDTH-2*BORDERMARGIN), random.randint(BORDERMARGIN*4.0, HEIGHT-2*BORDERMARGIN)], [0, 0], [0, 0], [64, 64], 0, 0)
+            ItemSet.add(item)
+            ElapsedTime = 0.0
         processInput()
         displayGameStatus(Scores, BallLoc, PaddleLoc[PLAYER], PaddleLoc[COMPUTER], dt)
 
